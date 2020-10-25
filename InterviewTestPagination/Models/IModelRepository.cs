@@ -13,5 +13,7 @@ namespace InterviewTestPagination.Models {
         /// </summary>
         /// <returns></returns>
         IEnumerable<T> All();
+
+        IEnumerable<T> List(string orderBy, string sortDirection);
     }
 }

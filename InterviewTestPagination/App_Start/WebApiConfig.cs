@@ -15,6 +15,12 @@ namespace InterviewTestPagination {
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "PagingRoute",
+                routeTemplate: "api/{controller}/{action}/{currentPage}/{pageSize}/{orderBy}/{sortDirection}",
+                defaults: new { sortDirection = RouteParameter.Optional }
+            );
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.Formatters.JsonFormatter.UseDataContractJsonSerializer = false;
         }

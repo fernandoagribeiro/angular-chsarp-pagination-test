@@ -10,11 +10,14 @@
 
 <body ng-app="todoApp">
 
+<div id="loadingDiv" ng-show="loading">
+    Loading...
+</div>
+
 <h2>TODO LIST APP</h2>
 <p>Interview Test: Paginating a 'Todo' model list</p>
 
 <todo-paginated-list></todo-paginated-list>
-
 
 <!-- scripts -->
 <script src="Scripts/angular.min.js"></script>

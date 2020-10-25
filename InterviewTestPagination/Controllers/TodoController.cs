@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using InterviewTestPagination.Models;
+﻿using InterviewTestPagination.Models;
+using InterviewTestPagination.Models.Page;
 using InterviewTestPagination.Models.Todo;
+using System.Web.Http;
 
-namespace InterviewTestPagination.Controllers {
+namespace InterviewTestPagination.Controllers
+{
     /// <summary>
     /// 'Rest' controller for the <see cref="Todo"/>
     /// model.
@@ -16,9 +17,12 @@ namespace InterviewTestPagination.Controllers {
         private readonly IModelService<Todo> _todoService = new TodoService();
 
         [HttpGet]
-        public IEnumerable<Todo> Todos(/* parameters  */) {
-            return _todoService.Repository.All();
-        }
+        public Page<Todo> Todos(int currentPage, int pageSize, string orderBy, string sortDirection = "asc") {
+            var originalCollection = _todoService.List(orderBy, sortDirection);
 
+            var page = new Page<Todo>(currentPage, pageSize, originalCollection);
+
+            return page;
+        }
     }
 }

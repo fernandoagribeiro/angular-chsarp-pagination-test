@@ -31,5 +31,33 @@ namespace InterviewTestPagination.Models.Todo {
             return DataSource.Values.OrderByDescending(t => t.CreatedDate);
         }
 
+        public IEnumerable<Todo> List(string orderBy, string sortDirection)
+        {
+            IOrderedEnumerable<Todo> orderedList;
+
+            switch (orderBy)
+            {
+                case "Created Date":
+                    if(sortDirection == "asc")
+                        orderedList = DataSource.Select(x => x.Value).OrderBy(x => x.CreatedDate);
+                    else
+                        orderedList = DataSource.Select(x => x.Value).OrderByDescending(x => x.CreatedDate);
+                    break;
+                case "Task":
+                    if (sortDirection == "asc")
+                        orderedList = DataSource.Select(x => x.Value).OrderBy(x => x.Task);
+                    else
+                        orderedList = DataSource.Select(x => x.Value).OrderByDescending(x => x.Task);
+                    break;
+                default:
+                    if (sortDirection == "asc")
+                        orderedList = DataSource.Select(x => x.Value).OrderBy(x => x.Id);
+                    else
+                        orderedList = DataSource.Select(x => x.Value).OrderByDescending(x => x.Id);
+                    break;
+            }
+
+            return orderedList.ToList();
+        }
     }
 }

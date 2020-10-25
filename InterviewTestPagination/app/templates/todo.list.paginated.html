@@ -21,17 +21,17 @@
             . the indicators don't need to look pretty, they just have to be distinct (ascending from descending) and communicate well what they're doing
 
         -->
-        <th>Id </th>
-        <th>Task </th>
-        <th>Created Date </th>
+        <th sort-direction="desc" column-name="Id" ng-click="orderBy($event)">{{columnsToSort[0].columnName}}</th>
+        <th sort-direction="desc" column-name="Task" ng-click="orderBy($event)">{{columnsToSort[1].columnName}}</th>
+        <th sort-direction="desc" column-name="Created Date" ng-click="orderBy($event)">{{columnsToSort[2].columnName}}</th>
     </tr>
-    
+
     <!-- table:body -->
     <!--
 
     When the list is still loading (first load or any request made to server to fetch a page):
     - A loading indicator should be displayed instead of the table body to indicate it
-    - It can be any kind of indicator (text, icon, img, etc). 
+    - It can be any kind of indicator (text, icon, img, etc).
     - Dont worry about styling (looking pretty, centralized, etc) it just has to show that the app is still active while the request is being made
 
     -->
